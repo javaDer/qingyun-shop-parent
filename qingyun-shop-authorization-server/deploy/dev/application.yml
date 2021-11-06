@@ -1,0 +1,41 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  redis:
+    database: 0
+    host: 192.168.1.20
+    port: 6379
+#    password: g0w?oc|[6qTyy!bpkieDio\giuiwixcd
+    timeout: 5000
+    jedis:
+      pool:
+        max-wait: -1
+        max-idle: -200
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+feign:
+  httpclient:
+    connection-timeout: 10000
+#定时任务相关配置
+#xxl:
+#  job:
+#    admin:
+#      addresses: http://10.0.0.33:8848/xxl-job-admin/
+#    executor:
+#      appname: front-desk-executor
+#      ip:
+#      port: 9996
+#      logpath: ./applogs/xxl-job2/jobhandler
+#      logretentiondays: 4
+#    accessToken:
+
+#cos-conf:
+#  secret-id: AKIDABycR7MARVP8c3ztRmrqqa4IHzRdAS9a
+#  secret-key: OZWM0OZU9vV1KQM8fwxjFVVLvGMDwSp1
+#  region-name: ap-beijing
+logging:
+  config: classpath:log4j2.xml
+#  bucket-name: dev-1258682338

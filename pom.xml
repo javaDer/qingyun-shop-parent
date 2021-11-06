@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.qinyun.shop</groupId>
+    <artifactId>qingyun-shop-parent</artifactId>
+    <version>1.0.0</version>
+    <modules>
+        <module>qingyun-shop-order</module>
+        <module>qingyun-shop-common</module>
+        <module>qingyun-shop-authorization-server</module>
+        <module>qingyun-shop-user</module>
+        <module>qingyun-shop-core</module>
+    </modules>
+    <packaging>pom</packaging>
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <swagger.version>2.9.2</swagger.version>
+        <swagger.models.version>1.5.21</swagger.models.version>
+        <swagger.bootstrapui.version>1.9.4</swagger.bootstrapui.version>
+        <java.version>1.8</java.version>
+        <maven.plugin.version>3.8.1</maven.plugin.version>
+        <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <docker.image.prefix>qingyun</docker.image.prefix>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.wwtianmei</groupId>
+                <artifactId>qingyun-starter-dependencies</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <!--Swagger-UI API文档生产工具-->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-ui</artifactId>
+        </dependency>
+        <!--解决Swagger 2.9.2版本NumberFormatException-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
+</project>

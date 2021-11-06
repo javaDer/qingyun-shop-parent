@@ -1,0 +1,109 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    url: jdbc:mysql://192.168.1.20:3306/mall?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: zhaofa
+    password: zhaofa123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 8
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runsMillis: 60000
+      min-evictable-idle-timeMillis: 300000
+      validation-query: select 'x' FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      use-global-data-source-stat: true
+  redis:
+    database: 0
+    host: 192.168.1.20
+    port: 6379
+#    password: g0w?oc|[6qTyy!bpkieDio\giuiwixcd
+    timeout: 5000
+    jedis:
+      pool:
+        max-wait: -1
+        max-idle: -200
+  rabbitmq:
+    host: 192.168.1.20
+    port: 5672
+    username: qingyun-order
+    password: qingyun-order
+  cloud:
+    # web-http的bean 配置（可以不配）；主要是区别于spring.cloud.stream.function.definition的配置
+    # 注意：配了一个其他全要配
+    function:
+      definition: testSupplier;testStreamBridge
+    stream:
+      function:
+        definition: myGenerate;generate
+          # streamBridge配置
+      source: myGenerate;generate
+      bindings:
+        # myGenerate 和 function的bean一一对应
+        myGenerate-out-0:
+          # 和生产者一致
+          destination: qingyun.order
+          producer:
+            # 分区案例二：GenericMessage的属性payload<T>来随机分发
+            # payload == Message里的实体类 ，下面语句就是payload.id=消息实体类的id；
+            # 默认算法：key.hashcode()%partition-count ；也就是说不一定要是数字类型，可以是任何类型的key；例如payload.cityName
+            partition-key-expression: payload.id
+            partition-count: 2
+            required-groups: ${spring.application.name}
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+feign:
+  httpclient:
+    connection-timeout: 10000
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+
+pagehelper:
+  helperDialect: mysql                           #分页插件方言选择
+  reasonable: false                               #合理化参数，设为true时pageNum<=0 时会查第一页， pageNum>pages （超过总数时），会查询最后一页
+  supportMethodsArguments: true
+logging:
+  config: classpath:log4j2-dev.xml
+#定时任务相关配置
+#xxl:
+#  job:
+#    admin:
+#      addresses: http://10.0.0.33:8848/xxl-job-admin/
+#    executor:
+#      appname: front-desk-executor
+#      ip:
+#      port: 9996
+#      logpath: ./applogs/xxl-job2/jobhandler
+#      logretentiondays: 4
+#    accessToken:
+
+#cos-conf:
+#  secret-id: AKIDABycR7MARVP8c3ztRmrqqa4IHzRdAS9a
+#  secret-key: OZWM0OZU9vV1KQM8fwxjFVVLvGMDwSp1
+#  region-name: ap-beijing
+#  bucket-name: dev-1258682338
