@@ -13,6 +13,7 @@
         <module>qingyun-shop-authorization-server</module>
         <module>qingyun-shop-user</module>
         <module>qingyun-shop-core</module>
+        <module>qingyun-shop-gateway</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

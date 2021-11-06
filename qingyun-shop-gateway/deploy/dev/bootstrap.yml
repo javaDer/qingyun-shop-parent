@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: qingyun-shop-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.20:8848
+        namespace: public
+        username: nacos
+        password: nacos
+      config:
+        file-extension: yaml
+        server-addr: 192.168.1.20:8848
+
+server:
+  port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    shutdown:
+      enabled: false
