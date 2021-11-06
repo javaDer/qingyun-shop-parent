@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: qingyun-order-server
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.20:8848
+        namespace: public
+        username: nacos
+        password: nacos
+#      host: 49.232.4.187
+#      port: 8501
+#      config:
+#        enabled: false
+#        format: YAML
+#        prefix: config
+#        defaultContext: ${spring.application.name}
+#        data-key: dev
+#        failFast: false
+#        watch:
+#          enabled: true
+#          delay: 500
+#      discovery:
+#        enabled: true
+#        instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+#        heartbeat:
+#          enabled: true
+#          ttlValue: 5
+#        healthCheckPath: /frontdesk/actuator/health
+#        healthCheckInterval: 10s
+#        health-check-timeout: 10s
+#        service-name: ${spring.application.name}
+#        prefer-ip-address: true
+#      retry:
+#        max-attempts: 10
+#        initial-interval: 1000
+#        max-interval: 3000
+server:
+  port: 10088
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    shutdown:
+      enabled: false
