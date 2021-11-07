@@ -20,6 +20,7 @@
         <docker.repostory>docker.repo.com</docker.repostory>
         <!--命名空间-->
         <docker.registry.name>qingyun</docker.registry.name>
+    <appPort>10088</appPort>
     </properties>
     <dependencies>
         <dependency>
