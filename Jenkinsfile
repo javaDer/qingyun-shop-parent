@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registryUrl= "192.168.1.20"       #搭建docker私有仓库（Harbor）或者 用DockerHub 或者用云平台的“容器镜像服务”
+        registryUrl= "192.168.1.20"      //搭建docker私有仓库（Harbor）或者 用DockerHub 或者用云平台的“容器镜像服务”
         registry_user= "admin"
         registry_pass= "zhaofa123"
         env=test       //"test" or "prod"        #选择打包及发布的环境
