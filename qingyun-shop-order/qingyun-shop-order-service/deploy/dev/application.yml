@@ -4,7 +4,7 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
   datasource:
-    url: jdbc:mysql://192.168.1.20:3306/mall?useSSL=false&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.1.20:3306/mall?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&serverTimezone=Asia/Shanghai
     username: zhaofa
     password: zhaofa123
     driver-class-name: com.mysql.cj.jdbc.Driver
