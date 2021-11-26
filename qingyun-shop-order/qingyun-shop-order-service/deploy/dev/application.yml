@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: qingyun-order-server
   servlet:
     multipart:
       max-file-size: 100MB
@@ -30,7 +32,7 @@ spring:
     database: 0
     host: 192.168.1.20
     port: 6379
-#    password: g0w?oc|[6qTyy!bpkieDio\giuiwixcd
+    #    password: g0w?oc|[6qTyy!bpkieDio\giuiwixcd
     timeout: 5000
     jedis:
       pool:
@@ -49,7 +51,7 @@ spring:
     stream:
       function:
         definition: myGenerate;generate
-          # streamBridge配置
+        # streamBridge配置
       source: myGenerate;generate
       bindings:
         # myGenerate 和 function的bean一一对应
@@ -89,21 +91,18 @@ pagehelper:
   supportMethodsArguments: true
 logging:
   config: classpath:log4j2-dev.xml
-#定时任务相关配置
-#xxl:
-#  job:
-#    admin:
-#      addresses: http://10.0.0.33:8848/xxl-job-admin/
-#    executor:
-#      appname: front-desk-executor
-#      ip:
-#      port: 9996
-#      logpath: ./applogs/xxl-job2/jobhandler
-#      logretentiondays: 4
-#    accessToken:
-
-#cos-conf:
-#  secret-id: AKIDABycR7MARVP8c3ztRmrqqa4IHzRdAS9a
-#  secret-key: OZWM0OZU9vV1KQM8fwxjFVVLvGMDwSp1
-#  region-name: ap-beijing
-#  bucket-name: dev-1258682338
+shenyu:
+  client:
+    # shenyu信息注册类型选nacos
+    registerType: nacos
+    # nacos的地址
+    serverLists: 192.168.1.20:8848
+    props:
+      # 指定网关路由前缀
+      contextPath: /order
+      # 本服务的端口（需要加上，不然启动会有报错信息）
+      port: ${server.port}
+      # 指定nacos的命名空间(这里不能指定public空间，否则注册不上，并且需要检查nacos有没有ShenyuRegisterCenter命名空间)
+      nacosNameSpace: dev
+      # isFull: 设置true 代表代理你的整个服务，false表示代理你其中某几个controller
+      isFull: true

@@ -9,6 +9,7 @@ import com.qingyun.shop.user.dto.MemberInfoDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Objects;
 
 /**
@@ -17,16 +18,12 @@ import java.util.Objects;
 @Service
 @Slf4j
 public class OrderQuery {
-    private final OmsOrderService orderService;
-    private final RemoteApi remoteApi;
-    private final OrderConvert orderConvert;
-
-    public OrderQuery(OmsOrderService orderService,
-                      RemoteApi remoteApi, OrderConvert orderConvert) {
-        this.orderService = orderService;
-        this.remoteApi = remoteApi;
-        this.orderConvert = orderConvert;
-    }
+    @Resource
+    private OmsOrderService orderService;
+    @Resource
+    private RemoteApi remoteApi;
+    @Resource
+    private OrderConvert orderConvert;
 
     public OrderVo selectOrderInfo(String id) {
         OmsOrder omsOrder = orderService.getById(id);

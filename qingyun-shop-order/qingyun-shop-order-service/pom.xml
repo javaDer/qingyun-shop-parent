@@ -15,6 +15,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <mapstruct.version>1.4.1.Final</mapstruct.version>
+        <shenyu.version>2.4.0</shenyu.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <!--仓库地址-->
         <docker.repostory>docker.repo.com</docker.repostory>
@@ -106,6 +107,13 @@
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
+        <!-- apache shenyu springCloud plugin start-->
+        <dependency>
+            <groupId>org.apache.shenyu</groupId>
+            <artifactId>shenyu-spring-boot-starter-client-springcloud</artifactId>
+            <version>${shenyu.version}</version>
+        </dependency>
+        <!-- apache shenyu springCloud plugin end-->
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>

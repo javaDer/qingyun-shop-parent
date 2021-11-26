@@ -6,6 +6,9 @@ import com.qingyun.shop.user.api.MemberApi;
 import com.qingyun.shop.user.dto.MemberInfoDto;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author Zhangzhaofa
+ */
 @Service
 public class RemoteApi {
     private final MemberApi memberApi;
