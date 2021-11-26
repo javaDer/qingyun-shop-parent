@@ -1,0 +1,11 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+management:
+  health:
+    defaults:
+      enabled: false
+shenyu:
+  sync:
+    websocket:
+      urls: ws://192.168.1.20:9095/websocket
