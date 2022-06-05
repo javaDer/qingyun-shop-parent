@@ -8,6 +8,8 @@ spring:
         namespace: dev
         username: nacos
         password: nacos
+    inetutils:
+      default-hostname: {java}
 #      host: 49.232.4.187
 #      port: 8501
 #      config:

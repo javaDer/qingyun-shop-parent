@@ -14,6 +14,7 @@
         <module>qingyun-shop-user</module>
         <module>qingyun-shop-core</module>
         <module>qingyun-shop-gateway</module>
+        <module>qingyun-shop-mq</module>
     </modules>
     <packaging>pom</packaging>
     <properties>

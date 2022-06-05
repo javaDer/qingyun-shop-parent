@@ -21,11 +21,16 @@ import java.util.Optional;
 @Api(value = "订单相关接口", tags = "订单相关接口")
 public class OrderControllers {
     private final OrderQuery orderQuery;
-
     public OrderControllers(OrderQuery orderQuery) {
         this.orderQuery = orderQuery;
     }
 
+    /**
+     * 获取订单详细信息
+     * @param token token
+     * @param id id
+     * @return BaseResponse<OrderVo>
+     */
     @GetMapping("/get/{id}")
     @ApiOperation(value = "获取订单详细信息", httpMethod = "GET", response = OrderVo.class)
     public BaseResponse<OrderVo> selectOrderInfo(@ApiParam(value = "当前登录人token", type = "String", required = true)
@@ -38,4 +43,5 @@ public class OrderControllers {
                 .orElseGet(() -> new BaseResponse<>(
                         Boolean.FALSE, BaseStatusEnum.FAILED.getCode(), "获取订单详细信息为空！", null));
     }
+
 }

@@ -1,0 +1,21 @@
+server:
+  port: 8881
+spring:
+  application:
+    name: qingyun-shop-message-consumer
+  cloud:
+    stream:
+      binders:
+        mykafka:
+          type: kafka
+            # Kafka的地址信息
+          environment:
+            spring:
+              kafka:
+                bootstrap-servers: 192.168.1.188:9092
+      bindings:
+        consumerEvent-in-0:
+          destination: canaltopic
+          group: ${spring.application.name}
+    function:
+      definition: consumerEvent
